@@ -34,7 +34,7 @@ public class BookController {
     }
 
     @PostMapping("/rentals")
-    public String createRental(@RequestBody BookReqDTO.CreateRentalDTO createRentalDTO){
+    public String createRental(@RequestBody @Valid BookReqDTO.CreateRentalDTO createRentalDTO){
         bookService.createRental(createRentalDTO.userId(), createRentalDTO.bookId());
         return "대여가 완료되었습니다!";
     }
