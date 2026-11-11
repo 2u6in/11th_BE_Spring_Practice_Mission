@@ -57,6 +57,9 @@ public class RatingService {
     @Transactional
     public void update(Long ratingId, Long memberId, UpdateRatingRequest request) {
         Rating rating = findOwnedRating(ratingId, memberId);
+        if (!rating.getMovieId().equals(request.movieId())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 영화에 남겨진 평점입니다.");
+        }
 
         rating.update(request.score(), request.comment());
         ratingRepository.save(rating);
