@@ -41,7 +41,7 @@ public class RatingController {
             @PathVariable Long ratingId,
             @Valid @RequestBody UpdateRatingRequest request
     ){
-        ratingService.update(memberId, ratingId, request);
+        ratingService.update(ratingId, memberId, request);
         return ResponseEntity.ok(ApiResponse.ok("평점 수정에 성공했습니다.", null));
     }
 

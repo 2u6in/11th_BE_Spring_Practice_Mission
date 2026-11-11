@@ -6,7 +6,6 @@ import com.umc.movie.dto.NicknameCheckResponse;
 import com.umc.movie.dto.SignUpRequest;
 import com.umc.movie.entity.Member;
 import com.umc.movie.repository.MemberRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberResponse signUp(@Valid SignUpRequest request) {
+    public MemberResponse signUp(SignUpRequest request) {
         if(memberRepository.existsByEmail(request.email())){
             throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
         }
