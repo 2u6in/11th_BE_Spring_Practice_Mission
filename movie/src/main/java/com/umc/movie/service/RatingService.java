@@ -60,6 +60,10 @@ public class RatingService {
     public RatingResponse update(Long memberId, Long ratingId, UpdateRatingRequest request) {
         Rating rating = findOwnedRating(memberId, ratingId);
 
+        if (!rating.getMovieId().equals(request.movieId())) {
+            throw new ApiException(HttpStatus.NOT_FOUND, "RATING404_2","존재하지 않는 영화에 남겨진 평점입니다.");
+        }
+
         rating.update(request.score(), request.comment());
         ratingRepository.save(rating);
 
