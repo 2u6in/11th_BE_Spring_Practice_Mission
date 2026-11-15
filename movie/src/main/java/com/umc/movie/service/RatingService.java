@@ -22,7 +22,6 @@ public class RatingService {
     private final RatingRepository ratingRepository;
     private final MemberRepository memberRepository;
 
-    // 5주차에 만든 조회입니다. 예외만 ApiException으로 바꿨습니다.
     @Transactional(readOnly = true)
     public List<RatingResponse> getRatingsByMember(Long memberId) {
         if (!memberRepository.existsById(memberId)) {
